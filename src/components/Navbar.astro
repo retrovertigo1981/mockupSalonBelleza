@@ -1,0 +1,86 @@
+---
+import { Menu, X, Instagram, Facebook } from 'lucide-react';
+import facebook from '@/assets/facebook.svg';
+import { buttonVariants } from '@/components/ui/button';
+
+const navLinks = [
+	{ name: 'Inicio', href: '#inicio' },
+	{ name: 'Servicios', href: '#servicios' },
+	{ name: 'Nosotros', href: '#nosotros' },
+	{ name: 'Galeria', href: '#galeria' },
+	{ name: 'Contacto', href: '#contacto' },
+];
+---
+
+<nav
+	class='fixed top-0 left-0 right-0 z-40 transition-all duration-500 bg-olive-dark/95 backdrop-blur-md shadow-lg py-3'
+>
+	<div class='container mx-auto px-4 lg:px-8'>
+		<div class='flex items-center justify-between'>
+			<!-- logo -->
+			<a href='#inicio' class='flex items-center gap-2'>
+				<div class='relative'>
+					<span
+						class='font-display text-2xl md:text-3xl font-bold text-cream-light tracking-wide'
+					>
+						Élite
+					</span>
+					<span
+						class='block text-[10px] text-rose-dusty tracking-[0.3em] uppercase font-body'
+					>
+						Beauty & Spa
+					</span>
+				</div>
+			</a>
+
+			<!-- navegacion de escritorio -->
+			<div class='hidden lg:flex items-center gap-8'>
+				{
+					navLinks.map((link) => (
+						<a
+							href={link.href}
+							class='text-cream-light/90 hover:text-rose-dusty transition-colors duration-300 font-body text-sm tracking-wide link-underline'
+						>
+							{link.name}
+						</a>
+					))
+				}
+			</div>
+
+			<!-- social y CTA -->
+			<div class='hidden lg:flex items-center gap-4'>
+				<div class='flex items-center gap-2'>
+					<a
+						href='https://instagram.com'
+						target='_blank'
+						rel='noopener noreferrer'
+						class='p-2 text-cream-light/80 hover:text-rose-dusty transition-colors duration-300'
+					>
+						<Instagram size={18} />
+					</a>
+					<a
+						href='https://facebook.com'
+						target='_blank'
+						rel='noopener noreferrer'
+						class='p-2 text-cream-light/80 hover:text-rose-dusty transition-colors duration-300'
+					>
+						<Facebook size={18} />
+					</a>
+				</div>
+
+				<a
+					href='#agendar'
+					class={buttonVariants({ variant: 'hero', size: 'sm' })}
+					>Agendar Cita</a
+				>
+			</div>
+
+			<!-- Mobile Menu -->
+		</div>
+	</div>
+</nav>
+
+<script>
+	const scroll = window.scrollY;
+	console.log(scroll);
+</script>
