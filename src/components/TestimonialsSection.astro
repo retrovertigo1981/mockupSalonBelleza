@@ -1,0 +1,295 @@
+---
+// FRONTMATTER: Datos estáticos
+const testimonials = [
+  {
+    id: 1,
+    name: 'María José Pérez',
+    role: 'Clienta desde 2019',
+    content: 'Una experiencia de belleza única en Santiago. El equipo es increíblemente profesional y el ambiente es simplemente perfecto. Me siento renovada después de cada visita.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Catalina Rodríguez',
+    role: 'Clienta desde 2020',
+    content: 'El mejor salón de belleza de Vitacura sin duda. Los tratamientos faciales son excepcionales y siempre salgo con una sonrisa. Altamente recomendado.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Fernanda González',
+    role: 'Clienta desde 2021',
+    content: 'Me encanta la atención personalizada que recibo. Cada detalle está pensado para hacerte sentir especial. Los productos que utilizan son de primera calidad.',
+    rating: 5,
+  },
+];
+---
+
+<!-- TEMPLATE: HTML limpio -->
+<section id="galeria" class="py-24 lg:py-32 bg-cream relative overflow-hidden">
+  <!-- Decorative background -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-200 bg-rose-blush/30 rounded-full blur-3xl"></div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div 
+      data-motion="header"
+      class="text-center mb-16 will-change-transform"
+    >
+      <span class="inline-block text-olive-medium font-body text-sm tracking-[0.3em] uppercase mb-4">
+        Testimonios
+      </span>
+      <h2 class="font-display text-4xl md:text-5xl text-olive-dark">
+        Lo que dicen nuestras <span class="italic text-rose-dusty">clientas</span>
+      </h2>
+    </div>
+
+    <!-- Testimonial Carousel -->
+    <div 
+      data-motion="carousel"
+      class="max-w-4xl mx-auto will-change-transform"
+    >
+      <div class="relative bg-cream-light rounded-3xl p-8 md:p-12 lg:p-16 shadow-elegant">
+        <!-- Quote Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="absolute top-8 left-8 w-12 h-12 text-rose-dusty/20">
+          <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/>
+          <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+        </svg>
+
+        <!-- Content -->
+        <div class="text-center relative z-10" data-carousel-content>
+          <!-- Stars -->
+          <div class="flex justify-center gap-1 mb-6" data-stars>
+            {Array(5).fill(0).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="w-5 h-5 fill-gold text-gold">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Testimonial Text -->
+          <p
+            data-testimonial-text
+            class="font-body text-xl md:text-2xl text-olive-dark leading-relaxed mb-8 italic will-change-transform"
+          >
+            "{testimonials[0].content}"
+          </p>
+
+          <!-- Author -->
+          <div data-testimonial-author class="will-change-transform">
+            <p class="font-display text-xl text-olive-dark" data-author-name>
+              {testimonials[0].name}
+            </p>
+            <p class="text-muted-foreground font-body text-sm mt-1" data-author-role>
+              {testimonials[0].role}
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-center gap-4 mt-10">
+          <button
+            data-prev-btn
+            class="w-12 h-12 rounded-full border-2 border-olive-dark/20 flex items-center justify-center text-olive-dark hover:bg-olive-dark hover:text-cream-light transition-all duration-300"
+            aria-label="Anterior testimonio"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button
+            data-next-btn
+            class="w-12 h-12 rounded-full border-2 border-olive-dark/20 flex items-center justify-center text-olive-dark hover:bg-olive-dark hover:text-cream-light transition-all duration-300"
+            aria-label="Siguiente testimonio"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <!-- Dots -->
+        <div class="flex justify-center gap-2 mt-6" data-dots-container>
+          {testimonials.map((_, index) => (
+            <button
+              data-dot={index}
+              data-active={index === 0 ? "true" : "false"}
+              class="h-2 rounded-full transition-all duration-300 ease-out"
+              style={index === 0 ? "width: 32px; background-color: #c9a8a8;" : "width: 8px; background-color: rgba(85, 107, 47, 0.2);"}
+              aria-label={`Ir al testimonio ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT: Motion One + Lógica del Carousel -->
+<script>
+  import { inView, animate } from 'motion';
+  
+  // Datos de testimonials
+  const testimonials = [
+    {
+      id: 1,
+      name: 'María José Pérez',
+      role: 'Clienta desde 2019',
+      content: 'Una experiencia de belleza única en Santiago. El equipo es increíblemente profesional y el ambiente es simplemente perfecto. Me siento renovada después de cada visita.',
+      rating: 5,
+    },
+    {
+      id: 2,
+      name: 'Catalina Rodríguez',
+      role: 'Clienta desde 2020',
+      content: 'El mejor salón de belleza de Vitacura sin duda. Los tratamientos faciales son excepcionales y siempre salgo con una sonrisa. Altamente recomendado.',
+      rating: 5,
+    },
+    {
+      id: 3,
+      name: 'Fernanda González',
+      role: 'Clienta desde 2021',
+      content: 'Me encanta la atención personalizada que recibo. Cada detalle está pensado para hacerte sentir especial. Los productos que utilizan son de primera calidad.',
+      rating: 5,
+    },
+  ];
+
+  // Estado
+  let activeIndex = 0;
+  let isAnimating = false;
+
+  // Referencias DOM
+  const textEl = document.querySelector('[data-testimonial-text]');
+  const authorEl = document.querySelector('[data-testimonial-author]');
+  const authorNameEl = document.querySelector('[data-author-name]');
+  const authorRoleEl = document.querySelector('[data-author-role]');
+  const prevBtn = document.querySelector('[data-prev-btn]');
+  const nextBtn = document.querySelector('[data-next-btn]');
+  const dots = document.querySelectorAll('[data-dot]');
+  const header = document.querySelector('[data-motion="header"]');
+  const carousel = document.querySelector('[data-motion="carousel"]');
+
+  // Función para setear estado inicial
+  const setInitialState = (element, from) => {
+    if (!element) return;
+    animate(element, from, { duration: 0 });
+  };
+
+  // Actualizar dots
+  const updateDots = () => {
+    dots.forEach((dot, index) => {
+      const isActive = index === activeIndex;
+      dot.setAttribute('data-active', isActive ? 'true' : 'false');
+      
+      if (isActive) {
+        animate(dot, { width: 32, backgroundColor: '#c9a8a8' }, { duration: 0.3 });
+      } else {
+        animate(dot, { width: 8, backgroundColor: 'rgba(85, 107, 47, 0.2)' }, { duration: 0.3 });
+      }
+    });
+  };
+
+  // Animar cambio de testimonio
+  const animateTestimonialChange = async (direction = 'next') => {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const current = testimonials[activeIndex];
+    const exitY = direction === 'next' ? -20 : 20;
+    const enterY = direction === 'next' ? 20 : -20;
+
+    try {
+      // Salida
+      await Promise.all([
+        animate(textEl, { opacity: 0, y: exitY }, { duration: 0.25, easing: [0, 0, 0.2, 1] }).finished,
+        animate(authorEl, { opacity: 0 }, { duration: 0.2 }).finished,
+      ]);
+
+      // Actualizar contenido
+      textEl.textContent = `"${current.content}"`;
+      authorNameEl.textContent = current.name;
+      authorRoleEl.textContent = current.role;
+
+      // Resetear posición para entrada
+      animate(textEl, { y: enterY }, { duration: 0 });
+      animate(authorEl, { y: enterY }, { duration: 0 });
+
+      // Entrada
+      await Promise.all([
+        animate(textEl, { opacity: 1, y: 0 }, { duration: 0.5, easing: [0, 0, 0.2, 1] }).finished,
+        animate(authorEl, { opacity: 1, y: 0 }, { duration: 0.5, delay: 0.2, easing: [0, 0, 0.2, 1] }).finished,
+      ]);
+
+      updateDots();
+    } catch (err) {
+      console.error('Animation error:', err);
+    } finally {
+      isAnimating = false;
+    }
+  };
+
+  // Navegación
+  const nextTestimonial = () => {
+    activeIndex = (activeIndex + 1) % testimonials.length;
+    animateTestimonialChange('next');
+  };
+
+  const prevTestimonial = () => {
+    activeIndex = (activeIndex - 1 + testimonials.length) % testimonials.length;
+    animateTestimonialChange('prev');
+  };
+
+  const goToTestimonial = (index) => {
+    if (index === activeIndex || isAnimating) return;
+    const direction = index > activeIndex ? 'next' : 'prev';
+    activeIndex = index;
+    animateTestimonialChange(direction);
+  };
+
+  // Event listeners
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      nextTestimonial();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      prevTestimonial();
+    });
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToTestimonial(index);
+    });
+  });
+
+  // Inicializar dots
+  updateDots();
+
+  // Animaciones de entrada
+  const viewportOptions = { margin: "-100px", amount: 0.1 };
+  
+  if (header) {
+    setInitialState(header, { opacity: 0, y: 30 });
+    inView(header, (el) => {
+      animate(el, { opacity: 1, y: 0 }, { duration: 0.8, easing: [0, 0, 0.2, 1] });
+    }, viewportOptions);
+  }
+
+  if (carousel) {
+    setInitialState(carousel, { opacity: 0, scale: 0.95 });
+    inView(carousel, (el) => {
+      animate(el, { opacity: 1, scale: 1 }, { duration: 0.8, delay: 0.2, easing: [0, 0, 0.2, 1] });
+    }, viewportOptions);
+
+    // Entrada del contenido
+    setInitialState(textEl, { opacity: 0, y: 20 });
+    setInitialState(authorEl, { opacity: 0, y: 20 });
+    
+    inView(carousel, () => {
+      animate(textEl, { opacity: 1, y: 0 }, { duration: 0.5, delay: 0.4, easing: [0, 0, 0.2, 1] });
+      animate(authorEl, { opacity: 1, y: 0 }, { duration: 0.5, delay: 0.6, easing: [0, 0, 0.2, 1] });
+    }, { margin: "-100px", amount: 0.3 });
+  }
+</script>

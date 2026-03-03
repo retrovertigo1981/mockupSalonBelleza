@@ -1,86 +1,171 @@
 ---
-import { Menu, X, Instagram, Facebook } from 'lucide-react';
-import facebook from '@/assets/facebook.svg';
-import { buttonVariants } from '@/components/ui/button';
-
+// FRONTMATTER: Solo imports estáticos
 const navLinks = [
-	{ name: 'Inicio', href: '#inicio' },
-	{ name: 'Servicios', href: '#servicios' },
-	{ name: 'Nosotros', href: '#nosotros' },
-	{ name: 'Galeria', href: '#galeria' },
-	{ name: 'Contacto', href: '#contacto' },
+  { name: 'Inicio', href: '#inicio' },
+  { name: 'Servicios', href: '#servicios' },
+  { name: 'Nosotros', href: '#nosotros' },
+  { name: 'Galería', href: '#galeria' },
+  { name: 'Contacto', href: '#contacto' },
 ];
 ---
 
-<nav
-	class='fixed top-0 left-0 right-0 z-40 transition-all duration-500 bg-olive-dark/95 backdrop-blur-md shadow-lg py-3'
->
-	<div class='container mx-auto px-4 lg:px-8'>
-		<div class='flex items-center justify-between'>
-			<!-- logo -->
-			<a href='#inicio' class='flex items-center gap-2'>
-				<div class='relative'>
-					<span
-						class='font-display text-2xl md:text-3xl font-bold text-cream-light tracking-wide'
-					>
-						Élite
-					</span>
-					<span
-						class='block text-[10px] text-rose-dusty tracking-[0.3em] uppercase font-body'
-					>
-						Beauty & Spa
-					</span>
-				</div>
-			</a>
+<!-- TEMPLATE: HTML exacto con tus clases de Tailwind -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 py-6 bg-transparent animate-nav-enter">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-2">
+        <div class="relative">
+          <span class="font-display text-2xl md:text-3xl font-bold text-cream-light tracking-wide">
+            Élite
+          </span>
+          <span class="block text-[10px] text-rose-dusty tracking-[0.3em] uppercase font-body">
+            Beauty & Spa
+          </span>
+        </div>
+      </a>
 
-			<!-- navegacion de escritorio -->
-			<div class='hidden lg:flex items-center gap-8'>
-				{
-					navLinks.map((link) => (
-						<a
-							href={link.href}
-							class='text-cream-light/90 hover:text-rose-dusty transition-colors duration-300 font-body text-sm tracking-wide link-underline'
-						>
-							{link.name}
-						</a>
-					))
-				}
-			</div>
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a
+            key={link.name}
+            href={link.href}
+            class="text-cream-light/90 hover:text-rose-dusty transition-colors duration-300 font-body text-sm tracking-wide link-underline"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
 
-			<!-- social y CTA -->
-			<div class='hidden lg:flex items-center gap-4'>
-				<div class='flex items-center gap-2'>
-					<a
-						href='https://instagram.com'
-						target='_blank'
-						rel='noopener noreferrer'
-						class='p-2 text-cream-light/80 hover:text-rose-dusty transition-colors duration-300'
-					>
-						<Instagram size={18} />
-					</a>
-					<a
-						href='https://facebook.com'
-						target='_blank'
-						rel='noopener noreferrer'
-						class='p-2 text-cream-light/80 hover:text-rose-dusty transition-colors duration-300'
-					>
-						<Facebook size={18} />
-					</a>
-				</div>
+      <!-- Social & CTA -->
+      <div class="hidden lg:flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 text-cream-light/80 hover:text-rose-dusty transition-colors duration-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 text-cream-light/80 hover:text-rose-dusty transition-colors duration-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+        <a href="#agendar" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-rose-dusty text-cream-light hover:bg-rose-dusty/90 h-9 px-4">
+          Agendar Cita
+        </a>
+      </div>
 
-				<a
-					href='#agendar'
-					class={buttonVariants({ variant: 'hero', size: 'sm' })}
-					>Agendar Cita</a
-				>
-			</div>
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 text-cream-light"
+        aria-label="Toggle menu"
+      >
+        <svg id="icon-menu" class="block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
 
-			<!-- Mobile Menu -->
-		</div>
-	</div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden bg-olive-dark/98 backdrop-blur-md border-t border-cream/10 overflow-hidden max-h-0 opacity-0 transition-all duration-300">
+    <div class="container mx-auto px-4 py-6 flex flex-col gap-4">
+      {navLinks.map((link, index) => (
+        <a
+          key={link.name}
+          href={link.href}
+          class="mobile-link text-cream-light/90 hover:text-rose-dusty transition-colors duration-300 font-body text-lg py-2 border-b border-cream/10 opacity-0 -translate-x-5"
+          data-index={index}
+        >
+          {link.name}
+        </a>
+      ))}
+      <a href="#agendar" class="mt-4 inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-rose-dusty text-cream-light hover:bg-rose-dusty/90 h-10 px-4 w-full">
+        Agendar Cita
+      </a>
+    </div>
+  </div>
 </nav>
 
+<!-- STYLES: Animaciones CSS -->
+<style>
+  @keyframes navEnter {
+    from { opacity: 0; transform: translateY(-100px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .animate-nav-enter { animation: navEnter 0.6s cubic-bezier(0, 0, 0.2, 1) forwards; }
+
+  .mobile-menu-open { max-height: 500px; opacity: 1; }
+  .mobile-menu-open .mobile-link { animation: slideInRight 0.3s cubic-bezier(0, 0, 0.2, 1) forwards; }
+  .mobile-menu-open .mobile-link[data-index="0"] { animation-delay: 0s; }
+  .mobile-menu-open .mobile-link[data-index="1"] { animation-delay: 0.1s; }
+  .mobile-menu-open .mobile-link[data-index="2"] { animation-delay: 0.2s; }
+  .mobile-menu-open .mobile-link[data-index="3"] { animation-delay: 0.3s; }
+  .mobile-menu-open .mobile-link[data-index="4"] { animation-delay: 0.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-nav-enter, .mobile-menu-open .mobile-link {
+      animation: none; opacity: 1; transform: none;
+    }
+  }
+</style>
+
+<!-- SCRIPT: JavaScript vanilla -->
 <script>
-	const scroll = window.scrollY;
-	console.log(scroll);
+  (function() {
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    let isOpen = false;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-olive-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-3');
+        navbar.classList.remove('bg-transparent', 'py-6');
+      } else {
+        navbar.classList.remove('bg-olive-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-3');
+        navbar.classList.add('bg-transparent', 'py-6');
+      }
+    });
+
+    mobileMenuBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      if (isOpen) {
+        iconMenu.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        mobileMenu.classList.add('mobile-menu-open');
+      } else {
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        mobileMenu.classList.remove('mobile-menu-open');
+      }
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (isOpen) {
+          isOpen = false;
+          iconMenu.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+          mobileMenu.classList.remove('mobile-menu-open');
+        }
+      });
+    });
+  })();
 </script>

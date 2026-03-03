@@ -1,0 +1,186 @@
+---
+// FRONTMATTER: Solo imports estáticos
+import serviceNails from '@/assets/service-nails.jpg';
+import serviceHair from '@/assets/service-hair.jpg';
+import serviceFacial from '@/assets/service-facial.jpg';
+import serviceMakeup from '@/assets/service-makeup.jpg';
+
+const serviceFacialUrl = typeof serviceFacial === 'string' ? serviceFacial : serviceFacial.src;
+const serviceHairUrl = typeof serviceHair === 'string' ? serviceHair : serviceHair.src;
+const serviceNailsUrl = typeof serviceNails === 'string' ? serviceNails : serviceNails.src;
+const serviceMakeupUrl = typeof serviceMakeup === 'string' ? serviceMakeup : serviceMakeup.src;
+
+const services = [
+  {
+    id: 1,
+    title: 'Tratamientos Faciales',
+    description: 'Limpieza profunda, hidratación y rejuvenecimiento facial con productos de alta gama.',
+    image: serviceFacialUrl,
+    icon: 'sparkles',
+    price: 'Desde $45.000',
+  },
+  {
+    id: 2,
+    title: 'Estilismo Capilar',
+    description: 'Cortes, colorimetría y tratamientos capilares personalizados por expertos.',
+    image: serviceHairUrl,
+    icon: 'scissors',
+    price: 'Desde $35.000',
+  },
+  {
+    id: 3,
+    title: 'Manicure & Pedicure',
+    description: 'Nail art de diseño, esmaltado semipermanente y cuidado integral de manos y pies.',
+    image: serviceNailsUrl,
+    icon: 'heart',
+    price: 'Desde $25.000',
+  },
+  {
+    id: 4,
+    title: 'Maquillaje Profesional',
+    description: 'Maquillaje para eventos especiales, novias y sesiones fotográficas.',
+    image: serviceMakeupUrl,
+    icon: 'star',
+    price: 'Desde $55.000',
+  },
+];
+---
+
+<!-- TEMPLATE: HTML limpio, SIN estilos de animación inline -->
+<section id="servicios" class="py-24 lg:py-32 bg-cream-light">
+  <div class="container mx-auto px-4 lg:px-8">
+    
+    <!-- Header -->
+    <div 
+      data-motion="header"
+      class="text-center mb-16 lg:mb-20"
+    >
+      <span class="inline-block text-olive-medium font-body text-sm tracking-[0.3em] uppercase mb-4">
+        Nuestros Servicios
+      </span>
+      <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-olive-dark mb-6">
+        Experiencias de <span class="italic text-rose-dusty">Belleza</span>
+      </h2>
+      <p class="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
+        Ofrecemos servicios exclusivos diseñados para realzar tu belleza natural
+        con técnicas de vanguardia y productos premium.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" data-motion-grid>
+      {services.map((service, index) => (
+        <div 
+          data-motion="card"
+          data-index={index}
+          class="group relative overflow-hidden rounded-2xl hover-lift will-change-transform"
+        >
+          <!-- Image -->
+          <div class="aspect-[4/5] overflow-hidden">
+            <img
+              src={service.image}
+              alt={service.title}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-olive-dark via-olive-dark/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+          <!-- Content -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-full bg-rose-dusty/20 flex items-center justify-center">
+                {service.icon === 'sparkles' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-rose-dusty"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                )}
+                {service.icon === 'scissors' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-rose-dusty"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/><path d="M20 20v-4h-4"/><path d="M4 4v4h4"/></svg>
+                )}
+                {service.icon === 'heart' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-rose-dusty"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                )}
+                {service.icon === 'star' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-rose-dusty"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                )}
+              </div>
+              <span class="text-rose-dusty font-body text-sm tracking-wider">
+                {service.price}
+              </span>
+            </div>
+
+            <h3 class="font-display text-2xl text-cream-light mb-2 group-hover:text-rose-dusty transition-colors duration-300">
+              {service.title}
+            </h3>
+
+            <p class="text-cream-light/70 font-body text-sm leading-relaxed transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              {service.description}
+            </p>
+          </div>
+
+          <div class="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-rose-dusty/30 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT: Motion One con control total desde JS -->
+<script>
+  import { inView, animate, spring } from 'motion';
+  
+  // Función para setear estado inicial instantáneamente (duración 0)
+  const setInitialState = (element, from) => {
+    animate(element, from, { duration: 0 });
+  };
+
+  // Configuración del viewport
+  const viewportOptions = { margin: "-100px", amount: 0.1 };
+
+  // HEADER: Estado inicial → Animación
+  const header = document.querySelector('[data-motion="header"]');
+  if (header) {
+    // 1. Setear estado inicial inmediatamente (opacity 0, y 30)
+    setInitialState(header, { opacity: 0, y: 30 });
+    
+    // 2. Cuando entra en vista, animar a final
+    inView(header, (element) => {
+      animate(element, 
+        { opacity: 1, y: 0 }, 
+        { 
+          duration: 0.8,
+          easing: [0, 0, 0.2, 1] // easeOut
+        }
+      );
+    }, viewportOptions);
+  }
+
+  // CARDS: Todas controladas por Motion desde JS
+  const cards = document.querySelectorAll('[data-motion="card"]');
+  const grid = document.querySelector('[data-motion-grid]');
+  
+  if (grid && cards.length > 0) {
+    // 1. Setear estado inicial de TODAS las cards inmediatamente
+    cards.forEach((card) => {
+      setInitialState(card, { opacity: 0, y: 50 });
+    });
+
+    // 2. Cuando el grid entra en vista, animar todas con stagger
+    inView(grid, () => {
+      cards.forEach((card, index) => {
+        const delay = index * 0.15;
+        
+        animate(card, 
+          { opacity: 1, y: 0 }, 
+          { 
+            duration: 0.6,
+            delay: delay,
+            easing: [0, 0, 0.2, 1] // easeOut
+          }
+        );
+      });
+    }, viewportOptions);
+  }
+</script>

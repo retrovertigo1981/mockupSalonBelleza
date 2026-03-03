@@ -1,0 +1,161 @@
+---
+// FRONTMATTER: Solo imports estáticos (no hay imágenes en este componente)
+
+const stats = [
+  { icon: 'award', value: '15+', label: 'Años de experiencia' },
+  { icon: 'users', value: '5.000+', label: 'Clientas satisfechas' },
+  { icon: 'clock', value: '20.000+', label: 'Tratamientos realizados' },
+  { icon: 'gem', value: '100%', label: 'Productos premium' },
+];
+---
+
+<!-- TEMPLATE: HTML limpio, SIN estilos de animación inline -->
+<section id="nosotros" class="py-24 lg:py-32 bg-olive-dark relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-olive-medium/20 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-rose-dusty/5 rounded-full blur-3xl"></div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      
+      <!-- Left Content -->
+      <div 
+        data-motion="left-content"
+        class="will-change-transform"
+      >
+        <span class="inline-block text-rose-dusty font-body text-sm tracking-[0.3em] uppercase mb-4">
+          Sobre Nosotros
+        </span>
+        <h2 class="font-display text-4xl md:text-5xl text-cream-light mb-6 leading-tight">
+          Donde la <span class="italic text-rose-dusty">Elegancia</span>
+          <br>se encuentra con la Belleza
+        </h2>
+        <div class="space-y-4 text-cream-light/80 font-body leading-relaxed">
+          <p>
+            En Élite Beauty & Spa, creemos que cada mujer merece sentirse extraordinaria. 
+            Ubicados en el corazón de Vitacura, ofrecemos un oasis de tranquilidad donde 
+            la sofisticación y el cuidado personal se fusionan.
+          </p>
+          <p>
+            Nuestro equipo de profesionales altamente capacitados utiliza técnicas de 
+            vanguardia y productos de las marcas más exclusivas del mundo para brindarte 
+            una experiencia de belleza incomparable.
+          </p>
+        </div>
+
+        <!-- Signature -->
+        <div class="mt-8 pt-8 border-t border-cream-light/10">
+          <p class="font-display text-xl italic text-rose-dusty mb-1">
+            Carolina Mendez
+          </p>
+          <p class="text-cream-light/60 font-body text-sm">
+            Fundadora & Directora Creativa
+          </p>
+        </div>
+      </div>
+
+      <!-- Right - Stats -->
+      <div 
+        data-motion="stats-container"
+        class="grid grid-cols-2 gap-6 will-change-transform"
+      >
+        {stats.map((stat, index) => (
+          <div
+            data-motion="stat-card"
+            data-index={index}
+            class="glass-card bg-cream-light/5 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center hover:bg-cream-light/10 transition-colors duration-300 group will-change-transform"
+          >
+            <!-- Iconos SVG inline -->
+            {stat.icon === 'award' && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-rose-dusty mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            )}
+            {stat.icon === 'users' && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-rose-dusty mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            )}
+            {stat.icon === 'clock' && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-rose-dusty mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            )}
+            {stat.icon === 'gem' && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-rose-dusty mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+            )}
+            
+            <p class="font-display text-3xl lg:text-4xl text-cream-light mb-2">
+              {stat.value}
+            </p>
+            <p class="text-cream-light/60 font-body text-sm">
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT: Motion One con control total desde JS -->
+<script>
+  import { inView, animate } from 'motion';
+  
+  // Función para setear estado inicial instantáneamente
+  const setInitialState = (element, from) => {
+    animate(element, from, { duration: 0 });
+  };
+
+  // Configuración del viewport
+  const viewportOptions = { margin: "-100px", amount: 0.1 };
+
+  // LEFT CONTENT: Estado inicial → Animación
+  const leftContent = document.querySelector('[data-motion="left-content"]');
+  if (leftContent) {
+    // 1. Setear estado inicial (opacity 0, x -50)
+    setInitialState(leftContent, { opacity: 0, x: -50 });
+    
+    // 2. Cuando entra en vista, animar a final
+    inView(leftContent, (element) => {
+      animate(element, 
+        { opacity: 1, x: 0 }, 
+        { 
+          duration: 0.8,
+          easing: [0, 0, 0.2, 1] // easeOut
+        }
+      );
+    }, viewportOptions);
+  }
+
+  // STATS CONTAINER: Estado inicial → Animación con delay
+  const statsContainer = document.querySelector('[data-motion="stats-container"]');
+  if (statsContainer) {
+    // 1. Setear estado inicial del contenedor (opacity 0, x 50)
+    setInitialState(statsContainer, { opacity: 0, x: 50 });
+    
+    // 2. Cuando entra en vista, animar contenedor primero
+    inView(statsContainer, () => {
+      // Animar el contenedor primero
+      animate(statsContainer, 
+        { opacity: 1, x: 0 }, 
+        { 
+          duration: 0.8,
+          delay: 0.2,
+          easing: [0, 0, 0.2, 1]
+        }
+      );
+      
+      // Luego animar las cards individuales con stagger
+      const statCards = statsContainer.querySelectorAll('[data-motion="stat-card"]');
+      statCards.forEach((card, index) => {
+        // Setear estado inicial de cada card (opacity 0, y 30)
+        setInitialState(card, { opacity: 0, y: 30 });
+        
+        // Animar con delay escalonado (0.3 + index * 0.1)
+        animate(card, 
+          { opacity: 1, y: 0 }, 
+          { 
+            duration: 0.6,
+            delay: 0.3 + (index * 0.1),
+            easing: [0, 0, 0.2, 1]
+          }
+        );
+      });
+    }, viewportOptions);
+  }
+</script>

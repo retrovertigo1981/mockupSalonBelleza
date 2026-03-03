@@ -1,0 +1,155 @@
+---
+// FRONTMATTER: Solo imports estáticos
+const contactItems = [
+  {
+    icon: 'mapPin',
+    title: 'Ubicación',
+    content: 'Av. Vitacura 4380, Local 25',
+    subtitle: 'Vitacura, Santiago de Chile',
+  },
+  {
+    icon: 'phone',
+    title: 'Teléfono',
+    content: '+56 2 2345 6789',
+    subtitle: 'WhatsApp disponible',
+  },
+  {
+    icon: 'clock',
+    title: 'Horario',
+    content: 'Lunes a Sábado: 9:00 - 20:00',
+    subtitle: 'Domingos: Cerrado',
+  },
+];
+---
+
+<!-- TEMPLATE: HTML limpio -->
+<section id="agendar" class="py-24 lg:py-32 bg-olive-dark relative overflow-hidden">
+  <!-- Decorative gradients -->
+  <div class="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-cream to-transparent"></div>
+  <div class="absolute inset-0 bg-linear-to-br from-olive-dark via-olive-dark to-olive-medium"></div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      <!-- Left - CTA -->
+      <div
+        data-motion="cta"
+        class="will-change-transform"
+      >
+        <span class="inline-block text-rose-dusty font-body text-sm tracking-[0.3em] uppercase mb-4">
+          Reserva tu Cita
+        </span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-cream-light mb-6 leading-tight">
+          Tu momento de <span class="italic text-rose-dusty">bienestar</span> te espera
+        </h2>
+        <p class="text-cream-light/80 font-body text-lg mb-8 leading-relaxed max-w-lg">
+          Agenda tu cita de manera fácil y rápida. Nuestro equipo te atenderá con la 
+          exclusividad que mereces.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a 
+            href="https://calendly.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-rose-dusty text-cream-light font-body font-medium rounded-full hover:bg-rose-dusty/90 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            Agendar con Calendly
+          </a>
+          <a 
+            href="https://agendapro.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-8 py-4 border border-cream-light/30 text-cream-light font-body font-medium rounded-full hover:bg-cream-light/10 transition-colors"
+          >
+            Usar AgendaPro
+          </a>
+        </div>
+      </div>
+
+      <!-- Right - Contact Info -->
+      <div
+        data-motion="contact-container"
+        class="space-y-6 will-change-transform"
+      >
+        {contactItems.map((item, index) => (
+          <div
+            data-motion="contact-card"
+            data-index={index}
+            class="flex items-start gap-4 p-6 rounded-2xl bg-cream-light/5 backdrop-blur-sm border border-cream-light/10 hover:border-rose-dusty/30 transition-colors duration-300 will-change-transform"
+          >
+            <div class="w-12 h-12 rounded-xl bg-rose-dusty/20 flex items-center justify-center flex-shrink-0">
+              {item.icon === 'mapPin' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-rose-dusty"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              )}
+              {item.icon === 'phone' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-rose-dusty"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              )}
+              {item.icon === 'clock' && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-rose-dusty"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              )}
+            </div>
+            <div>
+              <p class="text-cream-light/60 font-body text-sm uppercase tracking-wider mb-1">
+                {item.title}
+              </p>
+              <p class="text-cream-light font-display text-lg">
+                {item.content}
+              </p>
+              <p class="text-cream-light/50 font-body text-sm mt-1">
+                {item.subtitle}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPT: Motion One -->
+<script>
+  import { inView, animate } from 'motion';
+  
+  // Función para setear estado inicial
+  const setInitialState = (element, from) => {
+    if (!element) return;
+    animate(element, from, { duration: 0 });
+  };
+
+  // Configuración del viewport
+  const viewportOptions = { margin: "-100px", amount: 0.1 };
+
+  // CTA: Estado inicial → Animación
+  const cta = document.querySelector('[data-motion="cta"]');
+  if (cta) {
+    setInitialState(cta, { opacity: 0, x: -50 });
+    inView(cta, (el) => {
+      animate(el, { opacity: 1, x: 0 }, { duration: 0.8, easing: [0, 0, 0.2, 1] });
+    }, viewportOptions);
+  }
+
+  // Contact Container: Estado inicial → Animación con delay
+  const contactContainer = document.querySelector('[data-motion="contact-container"]');
+  if (contactContainer) {
+    setInitialState(contactContainer, { opacity: 0, x: 50 });
+    
+    inView(contactContainer, () => {
+      // Animar el contenedor primero
+      animate(contactContainer, { opacity: 1, x: 0 }, { duration: 0.8, delay: 0.2, easing: [0, 0, 0.2, 1] });
+      
+      // Luego animar las cards individuales con stagger
+      const contactCards = contactContainer.querySelectorAll('[data-motion="contact-card"]');
+      contactCards.forEach((card, index) => {
+        setInitialState(card, { opacity: 0, y: 20 });
+        
+        animate(card, { opacity: 1, y: 0 }, { 
+          duration: 0.6, 
+          delay: 0.3 + (index * 0.1), 
+          easing: [0, 0, 0.2, 1] 
+        });
+      });
+    }, viewportOptions);
+  }
+</script>
